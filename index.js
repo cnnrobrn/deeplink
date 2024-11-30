@@ -10,6 +10,8 @@ app.get('/.well-known/apple-app-site-association', (req, res) => {
 
 // Handle all other routes with an HTML page that includes fallback to Wha7.com
 app.get('*', (req, res) => {
+  console.log('Headers:', req.headers);
+  console.log('User Agent:', req.get('user-agent'));
   res.send(`
     <!DOCTYPE html>
     <html>
