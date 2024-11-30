@@ -1,4 +1,12 @@
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
 
+// Serve the AASA file from the .well-known directory
+app.get('/.well-known/apple-app-site-association', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.sendFile(__dirname + '/apple-app-site-association');
+});
 
 // Handle all other routes with an HTML page that includes fallback to Wha7.com
 app.get('*', (req, res) => {
@@ -28,4 +36,3 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-```
