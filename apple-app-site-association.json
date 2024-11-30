@@ -2,7 +2,7 @@
     "applinks": {
         "apps": [],
         "details": [{
-            "appID": "TEAM_ID.BUNDLE_ID",
+            "appID": "6738637892.com.wha7.app",
             "paths": ["*"]
         }]
     }
