@@ -3,15 +3,13 @@
         "apps": [],
         "details": [{
             "appID": "6738637892.com.wha7.app",
-            "paths": ["*"],
-            "appIDs": ["6738637892.com.wha7.app"],
             "components": [{
                 "/": "*",
                 "comment": "Matches any URL"
             }]
-        }]
-    },
-    "webcredentials": {
-        "apps": ["6738637892.com.wha7.app"]
+        }],
+        "defaults": {
+            "caseSensitive": false
+        }
     }
 }
