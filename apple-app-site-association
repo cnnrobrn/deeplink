@@ -4,8 +4,17 @@
         "details": [{
             "appID": "6738637892.com.wha7.app",
             "components": [{
+                "/": "/outfit*",
+                "comment": "Outfit pages"
+            }, {
+                "/": "/upload",
+                "comment": "Upload page"
+            }, {
+                "/": "/settings",
+                "comment": "Settings page"
+            }, {
                 "/": "*",
-                "comment": "Matches any URL"
+                "comment": "All other paths"
             }]
         }]
     }
