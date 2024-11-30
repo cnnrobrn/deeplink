@@ -1,21 +1,23 @@
 {
     "applinks": {
-        "apps": [],
         "details": [{
-            "appID": "6738637892.com.wha7.app",
+            "appIDs": ["6738637892.com.wha7.app"],
             "components": [{
-                "/": "/outfit*",
-                "comment": "Outfit pages"
-            }, {
                 "/": "/upload",
-                "comment": "Upload page"
+                "comment": "Matches upload path"
             }, {
                 "/": "/settings",
-                "comment": "Settings page"
+                "comment": "Matches settings path"
+            }, {
+                "/": "/outfit*",
+                "comment": "Matches outfit paths"
             }, {
                 "/": "*",
-                "comment": "All other paths"
+                "comment": "Matches any URL"
             }]
         }]
+    },
+    "webcredentials": {
+        "apps": ["6738637892.com.wha7.app"]
     }
 }
