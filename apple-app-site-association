@@ -7,9 +7,6 @@
                 "/": "*",
                 "comment": "Matches any URL"
             }]
-        }],
-        "defaults": {
-            "caseSensitive": false
-        }
+        }]
     }
 }
