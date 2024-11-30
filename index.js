@@ -12,11 +12,8 @@ app.get('/.well-known/apple-app-site-association', (req, res) => {
   res.sendFile(__dirname + '/apple-app-site-association');
 });
 
-// Specific test path
-app.get('/open', (req, res) => {
-  console.log('Path:', req.path);
-  console.log('Headers:', req.headers);
-
+// Handle specific paths
+const handlePath = (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -31,9 +28,14 @@ app.get('/open', (req, res) => {
       </body>
     </html>
   `);
-});
+};
 
-// Root path - immediate redirect
+// Define routes for each path
+app.get('/outfit/*', handlePath);
+app.get('/upload', handlePath);
+app.get('/settings', handlePath);
+
+// Root path - redirect to wha7.com
 app.get('/', (req, res) => {
   res.redirect('https://wha7.com');
 });
