@@ -14,7 +14,6 @@ app.get('/.well-known/apple-app-site-association', (req, res) => {
 
 // Handle all other routes
 app.get('*', (req, res) => {
-  // Log request details
   console.log('Path:', req.path);
   console.log('Headers:', req.headers);
   console.log('User Agent:', req.get('user-agent'));
@@ -32,15 +31,20 @@ app.get('*', (req, res) => {
           <p>Opening Wha7...</p>
         </div>
         <script>
+          let hasRedirected = false;
+          
           function redirectToApp() {
-            // Try universal link first
+            // Give iOS more time to handle the Universal Link
             setTimeout(function() {
-              // If app isn't opened after 1.5 seconds, redirect to website
-              window.location.href = 'https://wha7.com';
-            }, 1500);
+              if (!hasRedirected) {
+                hasRedirected = true;
+                window.location.replace('https://wha7.com');
+              }
+            }, 2500); // Increased to 2.5 seconds
           }
+
           // Run on page load
-          redirectToApp();
+          window.onload = redirectToApp;
         </script>
       </body>
     </html>
