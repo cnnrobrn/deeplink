@@ -14,20 +14,28 @@ app.get('*', (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Redirecting...</title>
+        <title>Redirecting to Wha7</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-      </head>
-      <body>
-        <p>Opening Wha7...</p>
         <script>
-          // Try to open the app first
-          window.location = 'com.wha7.app://${req.path}';
-          
-          // Redirect to Wha7.com after a short delay if app doesn't open
-          setTimeout(function() {
-            window.location.href = 'https://wha7.com';
-          }, 1000);
+          // Use a proper URL scheme for the app
+          function tryOpenApp() {
+            // First try Universal Link
+            if (window.location.href.startsWith('https://')) {
+              // Already using https, let iOS handle it
+              return;
+            }
+            
+            // Fallback to website after delay
+            setTimeout(function() {
+              window.location.href = 'https://wha7.com';
+            }, 1000);
+          }
         </script>
+      </head>
+      <body onload="tryOpenApp()">
+        <p style="text-align: center; margin-top: 40px; font-family: -apple-system, system-ui, BlinkMacSystemFont;">
+          Opening Wha7...
+        </p>
       </body>
     </html>
   `);
