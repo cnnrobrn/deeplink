@@ -16,6 +16,16 @@ app.get('/apple-app-site-association', (req, res) => {
   res.sendFile(path.join(__dirname, '.well-known/apple-app-site-association'));
 });
 
+// Handle root path
+app.get('/', (req, res) => {
+  res.send('Universal Links Server');
+});
+
+// Handle all other paths for deep linking
+app.get('*', (req, res) => {
+  res.send('Deep Link Path: ' + req.path);
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
