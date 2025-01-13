@@ -3,7 +3,6 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware for CORS and headers
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET');
@@ -11,20 +10,17 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve AASA file
 app.get('/.well-known/apple-app-site-association', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.sendFile(path.join(__dirname, '.well-known/apple-app-site-association'));
 });
 
-// Handle all other routes
 app.get('*', (req, res) => {
     const userAgent = req.headers['user-agent'] || '';
     const isInstagram = userAgent.includes('Instagram');
     const path = req.path === '/' ? '' : req.path;
     
     if (isInstagram) {
-        // Special handling for Instagram
         res.send(`
             <!DOCTYPE html>
             <html>
@@ -43,19 +39,24 @@ app.get('*', (req, res) => {
             </head>
             <body>
                 <script>
-                    // Try to open the app
+                    // Try sequence:
+                    // 1. Try universal link through custom scheme
                     window.location.href = "wha7://${path}";
                     
-                    // Redirect to main website after a brief delay
+                    // 2. After a short delay, try to open App Store app directly
+                    setTimeout(function() {
+                        window.location.href = "itms-apps://itunes.apple.com/app/idYOUR_APP_STORE_ID";
+                    }, 500);
+                    
+                    // 3. Finally, fallback to main website if neither worked
                     setTimeout(function() {
                         window.location.href = "https://wha7.com${path}";
-                    }, 500);
+                    }, 1000);
                 </script>
             </body>
             </html>
         `);
     } else {
-        // For non-Instagram requests, redirect to main website
         res.redirect(`https://wha7.com${path}`);
     }
 });
