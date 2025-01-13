@@ -27,28 +27,27 @@ app.get('*', (req, res) => {
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>WhatOutfit</title>
+                <title>Testing App Store Redirect</title>
                 
-                <!-- App Links meta tags -->
-                <meta property="al:ios:url" content="wha7://${path}" />
-                <meta property="al:ios:app_store_id" content="YOUR_APP_STORE_ID" />
-                <meta property="al:ios:app_name" content="WhatOutfit" />
+                <!-- Using Instagram for testing -->
+                <meta property="al:ios:url" content="instagram://" />
+                <meta property="al:ios:app_store_id" content="389801252" />
+                <meta property="al:ios:app_name" content="Instagram" />
                 
-                <!-- Smart App Banner -->
-                <meta name="apple-itunes-app" content="app-id=YOUR_APP_STORE_ID">
+                <!-- Smart App Banner for Instagram -->
+                <meta name="apple-itunes-app" content="app-id=389801252">
             </head>
             <body>
                 <script>
-                    // Try sequence:
-                    // 1. Try universal link through custom scheme
-                    window.location.href = "wha7://${path}";
+                    // Try to open Instagram
+                    window.location.href = "instagram://";
                     
-                    // 2. After a short delay, try to open App Store app directly
+                    // Try to open App Store app after a short delay
                     setTimeout(function() {
-                        window.location.href = "itms-apps://itunes.apple.com/app/idYOUR_APP_STORE_ID";
+                        window.location.href = "itms-apps://itunes.apple.com/app/id389801252";
                     }, 500);
                     
-                    // 3. Finally, fallback to main website if neither worked
+                    // Fallback to main website
                     setTimeout(function() {
                         window.location.href = "https://wha7.com${path}";
                     }, 1000);
