@@ -30,23 +30,15 @@ app.get('*', (req, res) => {
                 <title>Testing App Store Redirect</title>
                 
                 <!-- Using Instagram for testing -->
-                <meta property="al:ios:url" content="instagram://" />
                 <meta property="al:ios:app_store_id" content="389801252" />
-                <meta property="al:ios:app_name" content="Instagram" />
+                <meta property="al:ios:app_name" content="Wha7" />
                 
                 <!-- Smart App Banner for Instagram -->
                 <meta name="apple-itunes-app" content="app-id=389801252">
             </head>
             <body>
                 <script>
-                    // Try to open Instagram
-                    window.location.href = "instagram://";
-                    
-                    // Try to open App Store app after a short delay
-                    setTimeout(function() {
                         window.location.href = "itms-apps://itunes.apple.com/app/id389801252";
-                    }, 500);
-                    
                     // Fallback to main website
                     setTimeout(function() {
                         window.location.href = "https://wha7.com${path}";
